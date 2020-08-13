@@ -1,6 +1,6 @@
 # Semana 0
 
-1. [Path](Path)
+1. [Path](#Path)
 
 ## Path
 
