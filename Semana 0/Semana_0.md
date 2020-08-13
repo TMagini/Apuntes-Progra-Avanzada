@@ -1,7 +1,7 @@
 # Semana 0
 
 1. [Path](#Path)
-2. [Archivos (poco)](#Archivos-(poco))
+2. [Archivos (poco)](#Archivos)
 
 ## Path
 
@@ -107,7 +107,7 @@ Directorios:
 
 El parámetro `topdown` nos permite decidir si la navegación sobre una carpeta será desde el directorio raíz (topdown = True) o desde sus elementos hojas (`topdown = False`).
 
-## Archivos (poco)
+## Archivos
 
 abrir archivo: `open('archivo')`, y en el resto del argumento se le pude colocar `'rt'` que signifca abrir en modo lectura (`r`, _read_), y en forma texto (`t`), también esta el `'wt'`, que indica escribir (`w`, _write_) en forma texto (`t`)
 
