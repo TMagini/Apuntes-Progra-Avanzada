@@ -19,9 +19,6 @@ class Juego:
         with open(ruta_cartas, 'rt') as archivo:
             lineas = archivo.readlines()
             self.mazo = [x.strip().split(',') for x in lineas[1:]]
-            '''atributos = lineas[0]
-            for i in range(1, len(lineas)):
-                self.mazo.append(lineas[i].strip().split(','))'''
 
     def repartir_cartas(self):
         shuffle(self.mazo)
