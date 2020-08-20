@@ -1,7 +1,6 @@
 import os
 from random import shuffle, choice
 from collections import namedtuple
-from time import time
 
 
 class Juego:
@@ -22,7 +21,9 @@ class Juego:
             lineas = archivo.readlines()
             atributos = lineas[0].strip().split(',')
             Cartas = namedtuple('Cartas', atributos)
-            self.mazo = [Cartas(a, b, c) for a, b, c in [x.strip().split(',') for x in lineas[1:]]]
+            for i in range(len(lineas[1:])):
+                cartas = lineas[i].strip().split(',')
+                self.mazo.append(Cartas(cartas[0], cartas[1], cartas[2]))
 
     def repartir_cartas(self):
         shuffle(self.mazo)
