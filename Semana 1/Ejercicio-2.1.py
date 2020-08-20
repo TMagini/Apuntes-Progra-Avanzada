@@ -1,5 +1,7 @@
 import os
 from random import shuffle, choice
+from collections import namedtuple
+from time import time
 
 
 class Juego:
@@ -18,7 +20,9 @@ class Juego:
         ruta_cartas = os.path.join('contenidos', 'semana-01', 'ejercicios_propuestos', 'cards.csv')
         with open(ruta_cartas, 'rt') as archivo:
             lineas = archivo.readlines()
-            self.mazo = [x.strip().split(',') for x in lineas[1:]]
+            atributos = lineas[0].strip().split(',')
+            Cartas = namedtuple('Cartas', atributos)
+            self.mazo = [Cartas(a, b, c) for a, b, c in [x.strip().split(',') for x in lineas[1:]]]
 
     def repartir_cartas(self):
         shuffle(self.mazo)
@@ -27,42 +31,42 @@ class Juego:
             self.cartas_j2.append(self.mazo.pop(0))
 
     def atacar(self, atacante, defensa):
-        ptos_ataque = atacante[1]
-        ptos_defensa = defensa[2]
+        ptos_ataque = atacante.ataque
+        ptos_defensa = defensa.defensa
         if ptos_ataque > ptos_defensa:
-            return atacante
-        else:
             return defensa
+
+        else:
+            return atacante
 
     def comenzar_juego(self, turnos):
         for i in range(1, turnos + 1):
             print(f"Turno número {i}")
             if i % 2:
-                ataque_J1 = choice(self.cartas_j1)
-                defensa_J2 = choice(self.cartas_j2)
-                print(f'Juagador 1 ataca con {ataque_J1[0]}')
-                perdedor = self.atacar(ataque_J1, defensa_J2)
-                if perdedor in self.cartas_j1:
+                atacante = choice(self.cartas_j1)
+                defensa = choice(self.cartas_j2)
+                print(f'Juagador 1 ataca con {atacante.nombre}')
+                perdedor = self.atacar(atacante, defensa)
+                if perdedor == atacante:
                     print(f'Pierde el Jugador 1')
-                    self.cartas_j1.remove(ataque_J1)
+                    self.cartas_j1.remove(atacante)
                     self.cartas_j1.append(self.mazo.pop(0))
                 else:
                     print(f'Pierde el Jugador 2')
-                    self.cartas_j2.remove(defensa_J2)
+                    self.cartas_j2.remove(defensa)
                     self.cartas_j2.append(self.mazo.pop(0))
-
             else:
-                ataque_J2 = choice(self.cartas_j2)
-                defensa_J1 = choice(self.cartas_j1)
-                print(f'Juagador 2 ataca con {ataque_J2[0]}')
-                perdedor = self.atacar(ataque_J2, defensa_J1)
-                if perdedor in self.cartas_j2:
+                atacante = choice(self.cartas_j2)
+                defensa = choice(self.cartas_j1)
+                print(f'Juagador 2 ataca con {atacante.nombre}')
+                perdedor = self.atacar(atacante, defensa)
+                if perdedor == atacante:
                     print(f'Pierde el Jugador 2')
-                    self.cartas_j2.remove(ataque_J2)
+                    self.cartas_j2.remove(atacante)
                     self.cartas_j2.append(self.mazo.pop(0))
                 else:
                     print(f'Pierde el Jugador 1')
-                    self.cartas_j1.remove(defensa_J1)
+                    self.cartas_j1.remove(defensa)
                     self.cartas_j1.append(self.mazo.pop(0))
 
 
