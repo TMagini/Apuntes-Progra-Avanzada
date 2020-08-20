@@ -21,7 +21,7 @@ d = 0, 'uno'
 
 Las tuplas son estructuras de datos **inmutables**. Esto significa que **no es posible agregar o eliminar elementos**, o bien cambiar el contenido de la tupla una vez que ésta fue creada. Lo que si se puede hacer es modificar algún valor contenido _dentro_ de un elemento de la tupla (Ejemplo realizado en contenidos Semana 1).
 
-La tuplas tambien permiten retornar varibles individuales empaquetadas, por ejemplo un función que retorne más de una variable, y estas se pueden desenpaquetar en variables independientes. Por ejemplo:
+La tuplas también permiten retornar variables individuales empaquetadas, por ejemplo un función que retorne más de una variable, y estas se pueden desenpaquetar en variables independientes. Por ejemplo:
 
 ```python
 def calcular_geometria(a, b):
@@ -33,7 +33,7 @@ def calcular_geometria(a, b):
 
 data = calcular_geometria(20.0, 10.0)
 
-a, p, mpa, mpb = data # Desempaquetando varibales en individuales
+a, p, mpa, mpb = data # Desempaquetando variables en individuales
 
 a, p, mpa, mpb = calcular_geometria(20.0, 10.0) # Desempaquetar directamente
 ```
